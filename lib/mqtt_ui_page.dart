@@ -4,6 +4,7 @@ import 'Adafruit_feed.dart';
 
 class MqttPage extends StatefulWidget {
   MqttPage({this.title});
+
   final String title;
 
   @override
@@ -14,8 +15,9 @@ class MqttPageState extends State<MqttPage> {
   // Instantiate an instance of the class that handles
   // connecting, subscribing, publishing to Adafruit.io
   AppMqttTransactions myMqtt = AppMqttTransactions();
-  final myTopicController = TextEditingController();
+  final myTopicController = TextEditingController(text: "/topic/test");
   final myValueController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,12 +32,14 @@ class MqttPageState extends State<MqttPage> {
   // The body of the page.  The children contain the main components of
   // the UI.
   Widget _body() {
-    return Column(
-      children: <Widget>[
-        _subscriptionInfo(),
-        _subscriptionData(),
-        _publishInfo(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          _subscriptionInfo(),
+          _subscriptionData(),
+          _publishInfo(),
+        ],
+      ),
     );
   }
 
